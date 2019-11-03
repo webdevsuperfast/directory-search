@@ -133,13 +133,13 @@ export default {
           break;
         case 'ebook':
         case 'kindle':
-          return this.placeholder = 'Ubuntu for Dummies'
+          return this.placeholder = 'Epic of Gilgamesh'
           break;
         case 'image':
-          return this.placeholder = 'Debian'
+          return this.placeholder = 'Tux'
           break;
         case 'archive':
-          return this.placeholder = 'Manjaro'
+          return this.placeholder = 'Debian'
           break;
       }
     }
