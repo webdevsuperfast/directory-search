@@ -1,10 +1,10 @@
 <template>
   <main class="mx-auto my-auto">
-    <b-form inline @submit.prevent="handleSubmit">
+    <b-form inline>
       <label class="sr-only" for="search-input">Search String</label>
       <b-form-input 
         name="keyword" 
-        v-model="api.keyword" 
+        v-model="keyword" 
         id="search-input" type="text" 
         placeholder="keyword" 
         ></b-form-input>
@@ -14,13 +14,11 @@
         class="ml-2"
         :value="null"
         :options="filetypes"
-        v-model.trim="filetype"
-        v-on:change="getFiletype"
+        v-model="filetype"
       >
       </b-form-select>
-      <b-button variant="primary" class="ml-2">Search</b-button>
+      <b-button variant="primary" class="ml-2" @click="addUrl">Search</b-button>
     </b-form>
-    {{ url }}
   </main>
 </template>
 
@@ -35,6 +33,8 @@ export default {
     return {
       filetype: 'music',
       url: '',
+      urls: [],
+      keyword: '',
       form: {
         keyword: '',
         filetype: 'music'
@@ -51,8 +51,8 @@ export default {
       },
       api: {
         baseUrl: 'https://www.google.com/search?q=',
-        formats: '(.ogg|.mp3|.flac|.wma|.m4a)',
-        keyword: 'test',
+        formats: '',
+        keyword: '',
         inTitle: '%22index of%22',
         inUrl: '(jsp|pl|php|html|aspx|htm|cf|shtml|hypem|unknownsecret|sirens|writeups|trimediacentral|articlescentral|listen77|mp3raid|mp3toss|mp3drug|theindexof|index_of|wallywashis|indexofmp3)'
       }
@@ -68,8 +68,7 @@ export default {
     }
   },
   methods: {
-    getFiletype: function() {
-      const type = this.filetype
+    getFiletype: function(type) {
       switch (type) {
         case 'music':
         default:
@@ -95,19 +94,14 @@ export default {
           break;
       }
     },
-    convertKeyword: function() {
-
-    },
-    handleSubmit: function() {
-      const { baseUrl, formats, keyword, inTitle, inUrl } = this.api
+    addUrl: function() {
+      const formats = this.getFiletype(this.filetype)
+      const keyword = this.keyword
+      const { baseUrl, inTitle, inUrl } = this.api
       const apiUrl = `${baseUrl}`+'%2B'+`${formats}`+'%20'+`${keyword}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl}`
-      return this.url = apiUrl
+      this.url = apiUrl
+      window.open(apiUrl)
     }
-  },
-  computed: {
-  },
-  created: function() {
-    this.handleSubmit()
   }
 }
 </script>
