@@ -33,9 +33,6 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import { required, minLength } from 'vuelidate/lib/validators'
-
 export default {
   name: 'Search',
   mixins: [validationMixin],
@@ -75,15 +72,6 @@ export default {
   computed: {
     isDisabled: function() {
       return this.keyword.length == 0
-    }
-  },
-  validations: {
-    keyword: {
-      required,
-      minLength: minLength(1)
-    },
-    filetype: {
-      required
     }
   },
   methods: {
