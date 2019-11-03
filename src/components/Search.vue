@@ -19,7 +19,7 @@
         @change="addPlaceholder"
       >
       </b-form-select>
-      <b-button variant="primary" class="ml-2" @click="addUrl">Search</b-button>
+      <b-button variant="primary" class="ml-2" @click="addUrl" :disabled="isDisabled">Search</b-button>
     </b-form>
   </main>
 </template>
@@ -57,8 +57,16 @@ export default {
         formats: '',
         keyword: '',
         inTitle: '%22index of%22',
-        inUrl: '(jsp|pl|php|html|aspx|htm|cf|shtml|hypem|unknownsecret|sirens|writeups|trimediacentral|articlescentral|listen77|mp3raid|mp3toss|mp3drug|theindexof|index_of|wallywashis|indexofmp3)'
+        inUrl: [
+          '(jsp|pl|php|html|aspx|htm|cf|shtml|hypem|unknownsecret|sirens|writeups|trimediacentral|articlescentral)',
+          '(listen77|mp3raid|mp3toss|mp3drug|theindexof|index_of|wallywashis|indexofmp3)'
+        ]
       }
+    }
+  },
+  computed: {
+    isDisabled: function() {
+      return this.keyword.length == 0
     }
   },
   validations: {
@@ -101,7 +109,7 @@ export default {
       const formats = this.getFiletype(this.filetype)
       const keyword = this.keyword
       const { baseUrl, inTitle, inUrl } = this.api
-      const apiUrl = `${baseUrl}`+'%2B'+`${formats}`+'%20'+`${keyword}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl}`
+      const apiUrl = `${baseUrl}`+'%2B'+`${formats}`+'%20'+`${keyword}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
       this.url = apiUrl
       window.open(apiUrl)
     },
