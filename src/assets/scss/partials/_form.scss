@@ -1,0 +1,8 @@
+form {
+  div[class^="col-"] {
+    margin-bottom: $spacer;
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 0;
+    }
+  }
+}
