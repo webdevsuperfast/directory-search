@@ -9,7 +9,7 @@
           size="lg"
           v-model="keyword" 
           id="search-input" type="text" 
-          :placeholder="['Search anything e.g. ' + placeholder]" 
+          :placeholder="'Search anything e.g. ' + placeholder" 
           v-on:keydown.enter.prevent
           ></b-form-input>
       </b-col>
