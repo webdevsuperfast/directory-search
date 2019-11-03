@@ -11,6 +11,7 @@
           id="search-input" type="text" 
           :placeholder="'Search anything e.g. ' + placeholder" 
           v-on:keydown.enter.prevent
+          @change="getQuery"
           ></b-form-input>
       </b-col>
       <b-col lg="3">
@@ -55,7 +56,7 @@ export default {
       api: {
         baseUrl: 'https://www.google.com/search?q=',
         formats: '',
-        keyword: '',
+        query: '',
         inTitle: 'index.of',
         inUrl: [
           '(jsp|pl|php|html|aspx|htm|cf|shtml|hypem|unknownsecret|sirens|writeups|trimediacentral|articlescentral)',
@@ -100,10 +101,10 @@ export default {
       }
     },
     addUrl: function() {
-      const formats = this.getFiletype(this.filetype)
-      const keyword = this.keyword
-      const { baseUrl, inTitle, inUrl } = this.api
-      const apiUrl = `${baseUrl}`+`${keyword}`+'%20%2B'+`${formats}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
+      // const formats = this.getFiletype(this.filetype)
+      // const keyword = this.keyword
+      const { baseUrl, formats, query, inTitle, inUrl } = this.api
+      const apiUrl = `${baseUrl}`+`${query}`+'%20%2B'+`${formats}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
       this.url = apiUrl
       window.open(apiUrl)
     },
@@ -131,6 +132,9 @@ export default {
           return this.placeholder = 'SuperTuxCart'
           break;
       }
+    },
+    getQuery: function() {
+      this.api.query = this.keyword.replace(/ +/g, " ").trim()
     }
   },
   created() {
