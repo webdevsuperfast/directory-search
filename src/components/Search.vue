@@ -56,7 +56,7 @@ export default {
         baseUrl: 'https://www.google.com/search?q=',
         formats: '',
         keyword: '',
-        inTitle: '%22index of%22',
+        inTitle: 'index.of',
         inUrl: [
           '(jsp|pl|php|html|aspx|htm|cf|shtml|hypem|unknownsecret|sirens|writeups|trimediacentral|articlescentral)',
           '(listen77|mp3raid|mp3toss|mp3drug|theindexof|index_of|wallywashis|indexofmp3)'
@@ -103,7 +103,7 @@ export default {
       const formats = this.getFiletype(this.filetype)
       const keyword = this.keyword
       const { baseUrl, inTitle, inUrl } = this.api
-      const apiUrl = `${baseUrl}`+'%2B'+`${formats}`+'%20'+`${keyword}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
+      const apiUrl = `${baseUrl}`+`${keyword}`+'%20%2B'+`${formats}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
       this.url = apiUrl
       window.open(apiUrl)
     },
