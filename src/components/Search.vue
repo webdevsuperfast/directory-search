@@ -22,7 +22,7 @@
           :value="null"
           :options="filetypes"
           v-model="filetype"
-          @change="addPlaceholder"
+          @change="getTypePlaceholder"
         >
         </b-form-select>
       </b-col>
@@ -75,35 +75,33 @@ export default {
       switch (type) {
         case 'music':
         default:
-          return this.api.formats = '(.ogg|.mp3|.flac|.wma|.m4a)'
+          this.api.formats = '(.ogg|.mp3|.flac|.wma|.m4a)'
           break;
         case 'flac':
-          return this.api.formats = '(.flac|.alac|.ape|.aac)'
+          this.api.formats = '(.flac|.alac|.ape|.aac)'
           break;
         case 'video':
-          return this.api.formats = '(.mkv|.mp4|.avi|.mov|.mpg|.wmv)'
+          this.api.formats = '(.mkv|.mp4|.avi|.mov|.mpg|.wmv)'
           break;
         case 'ebook':
-          return this.api.formats = '(.MOBI|.CBZ|.CBR|.CBC|.CHM|.EPUB|.FB2|.LIT|.LRF|.ODT|.PDF|.PRC|.PDB|.PML|.RB|.RTF|.TCR)'
+          this.api.formats = '(.MOBI|.CBZ|.CBR|.CBC|.CHM|.EPUB|.FB2|.LIT|.LRF|.ODT|.PDF|.PRC|.PDB|.PML|.RB|.RTF|.TCR)'
           break;
         case 'kindle':
-          return this.api.formats = '(.MOBI|.EPUB|.LIT)'
+          this.api.formats = '(.MOBI|.EPUB|.LIT)'
           break;
         case 'image':
-          return this.api.formats = '(.jpg|.gif|.png|.tif|.tiff|.psd)'
+          this.api.formats = '(.jpg|.gif|.png|.tif|.tiff|.psd)'
           break;
         case 'archive':
-          return this.api.formats = '(.rar|.tar|.zip|.sit)'
+          this.api.formats = '(.rar|.tar|.zip|.sit)'
           break;
         case 'cd':
-          return this.api.formats = '(exe|iso|tar|rar|zip|apk)'
+          this.api.formats = '(exe|iso|tar|rar|zip|apk)'
           break;
       }
     },
     addUrl: function() {
-      // const formats = this.getFiletype(this.filetype)
-      // const keyword = this.keyword
-      const { baseUrl, formats, query, inTitle, inUrl } = this.api
+      const { baseUrl, query, formats, inTitle, inUrl } = this.api
       const apiUrl = `${baseUrl}`+`${query}`+'%20%2B'+`${formats}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
       this.url = apiUrl
       window.open(apiUrl)
@@ -113,28 +111,32 @@ export default {
         case 'music':
         case 'flac':
         default:
-          return this.placeholder = 'Beethoven'
+          this.placeholder = 'Beethoven'
           break;
         case 'video':
-          return this.placeholder = 'Big Buck Bunny'
+          this.placeholder = 'Big Buck Bunny'
           break;
         case 'ebook':
         case 'kindle':
-          return this.placeholder = 'Epic of Gilgamesh'
+          this.placeholder = 'Epic of Gilgamesh'
           break;
         case 'image':
-          return this.placeholder = 'Tux'
+          this.placeholder = 'Tux'
           break;
         case 'archive':
-          return this.placeholder = 'Debian'
+          this.placeholder = 'Debian'
           break;
         case 'cd':
-          return this.placeholder = 'SuperTuxCart'
+          this.placeholder = 'SuperTuxCart'
           break;
       }
     },
     getQuery: function() {
       this.api.query = this.keyword.replace(/ +/g, " ").trim()
+    },
+    getTypePlaceholder: function() {
+      this.getFiletype(this.filetype)
+      this.addPlaceholder(this.filetype)  
     }
   },
   created() {
