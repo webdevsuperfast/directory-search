@@ -1,5 +1,5 @@
 <template>
-  <img :src="`${publicPath}images/logo.svg`" width="100" height="100" />
+  <b-img-lazy class="mb-4" fluid :src="`${publicPath}images/logo_with_text.png`" alt="Open Directory Search"></b-img-lazy>
 </template>
 
 <script>
