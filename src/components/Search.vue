@@ -20,6 +20,7 @@
       </b-form-select>
       <b-button variant="primary" class="ml-2">Search</b-button>
     </b-form>
+    {{ url }}
   </main>
 </template>
 
@@ -33,6 +34,7 @@ export default {
   data() {
     return {
       filetype: 'music',
+      url: '',
       form: {
         keyword: '',
         filetype: 'music'
@@ -49,8 +51,8 @@ export default {
       },
       api: {
         baseUrl: 'https://www.google.com/search?q=',
-        formats: '',
-        keyword: '',
+        formats: '(.ogg|.mp3|.flac|.wma|.m4a)',
+        keyword: 'test',
         inTitle: '%22index of%22',
         inUrl: '(jsp|pl|php|html|aspx|htm|cf|shtml|hypem|unknownsecret|sirens|writeups|trimediacentral|articlescentral|listen77|mp3raid|mp3toss|mp3drug|theindexof|index_of|wallywashis|indexofmp3)'
       }
@@ -93,15 +95,19 @@ export default {
           break;
       }
     },
-    handleSubmit: function(searchParams) {
-      this.reformattedKeyword = searchParams.join(' ')
-      this.api.keyword = searchParams.join('+')
-      
-      const { baseUrl, formats, keyword, inTitle, inUrl } = this.api
-      const apiUrl = `${baseUrl}+${formats}+${keyword}+${inTitle}+${inUrl}`
+    convertKeyword: function() {
 
-      console.log(apiUrl)
+    },
+    handleSubmit: function() {
+      const { baseUrl, formats, keyword, inTitle, inUrl } = this.api
+      const apiUrl = `${baseUrl}`+'%2B'+`${formats}`+'%20'+`${keyword}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl}`
+      return this.url = apiUrl
     }
+  },
+  computed: {
+  },
+  created: function() {
+    this.handleSubmit()
   }
 }
 </script>
