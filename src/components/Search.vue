@@ -35,7 +35,6 @@
 <script>
 export default {
   name: 'Search',
-  mixins: [validationMixin],
   data() {
     return {
       filetype: 'music',
@@ -43,10 +42,6 @@ export default {
       url: '',
       urls: [],
       keyword: '',
-      form: {
-        keyword: '',
-        filetype: 'music'
-      },
       filetypes: {
         music: 'Music',
         flac: 'Lossless Music',
