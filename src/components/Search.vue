@@ -6,7 +6,8 @@
         name="keyword" 
         v-model="keyword" 
         id="search-input" type="text" 
-        placeholder="keyword" 
+        :placeholder="['Search anything e.g. ' + placeholder]" 
+        v-on:keydown.enter.prevent
         ></b-form-input>
       <label class="sr-only" for="search-select"></label>
       <b-form-select
@@ -15,6 +16,7 @@
         :value="null"
         :options="filetypes"
         v-model="filetype"
+        @change="addPlaceholder"
       >
       </b-form-select>
       <b-button variant="primary" class="ml-2" @click="addUrl">Search</b-button>
@@ -32,6 +34,7 @@ export default {
   data() {
     return {
       filetype: 'music',
+      placeholder: '',
       url: '',
       urls: [],
       keyword: '',
@@ -101,7 +104,33 @@ export default {
       const apiUrl = `${baseUrl}`+'%2B'+`${formats}`+'%20'+`${keyword}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl}`
       this.url = apiUrl
       window.open(apiUrl)
+    },
+    addPlaceholder: function(type) {
+      switch (type) {
+        case 'music':
+        case 'flac':
+        default:
+          return this.placeholder = 'Beethoven'
+          break;
+        case 'video':
+          return this.placeholder = 'Big Buck Bunny'
+          break;
+        case 'ebook':
+        case 'kindle':
+          return this.placeholder = 'Ubuntu for Dummies'
+          break;
+        case 'image':
+          return this.placeholder = 'Debian'
+          break;
+        case 'archive':
+          return this.placeholder = 'Manjaro'
+          break;
+      }
     }
+  },
+  created() {
+    this.getFiletype(this.filetype)
+    this.addPlaceholder(this.filetype)
   }
 }
 </script>
