@@ -57,8 +57,8 @@ export default {
         ebook: 'E-Book',
         kindle: 'Kindle',
         image: 'Images',
-        archive: 'Archive'
-        // torrent: 'Torrent' 
+        archive: 'Archive',
+        cd: 'Games/Software' 
       },
       api: {
         baseUrl: 'https://www.google.com/search?q=',
@@ -111,6 +111,9 @@ export default {
         case 'archive':
           return this.api.formats = '(.rar|.tar|.zip|.sit)'
           break;
+        case 'cd':
+          return this.api.formats = '(exe|iso|tar|rar|zip|apk)'
+          break;
       }
     },
     addUrl: function() {
@@ -140,6 +143,9 @@ export default {
           break;
         case 'archive':
           return this.placeholder = 'Debian'
+          break;
+        case 'cd':
+          return this.placeholder = 'SuperTuxCart'
           break;
       }
     }
