@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <Logo />
-    <Search />
+    <main class="mx-auto my-auto">
+      <Logo />
+      <Search />
+    </main>
   </div>
 </template>
 

@@ -1,27 +1,25 @@
 <template>
-  <main class="mx-auto my-auto">
-    <b-form inline>
-      <label class="sr-only" for="search-input">Search String</label>
-      <b-form-input 
-        name="keyword" 
-        v-model="keyword" 
-        id="search-input" type="text" 
-        :placeholder="['Search anything e.g. ' + placeholder]" 
-        v-on:keydown.enter.prevent
-        ></b-form-input>
-      <label class="sr-only" for="search-select"></label>
-      <b-form-select
-        id="search-select"
-        class="ml-2"
-        :value="null"
-        :options="filetypes"
-        v-model="filetype"
-        @change="addPlaceholder"
-      >
-      </b-form-select>
-      <b-button variant="primary" class="ml-2" @click="addUrl" :disabled="isDisabled">Search</b-button>
-    </b-form>
-  </main>
+  <b-form inline>
+    <label class="sr-only" for="search-input">Search String</label>
+    <b-form-input 
+      name="keyword" 
+      v-model="keyword" 
+      id="search-input" type="text" 
+      :placeholder="['Search anything e.g. ' + placeholder]" 
+      v-on:keydown.enter.prevent
+      ></b-form-input>
+    <label class="sr-only" for="search-select"></label>
+    <b-form-select
+      id="search-select"
+      class="ml-2"
+      :value="null"
+      :options="filetypes"
+      v-model="filetype"
+      @change="addPlaceholder"
+    >
+    </b-form-select>
+    <b-button variant="primary" class="ml-2" @click="addUrl" :disabled="isDisabled">Search</b-button>
+  </b-form>
 </template>
 
 <script>
