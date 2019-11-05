@@ -4,6 +4,9 @@ import App from './App.vue'
 // Bootstrap Configuration
 import '@/config/bootstrap'
 
+// Vue Meta Configuration
+import '@/config/meta'
+
 // Consilidated SCSS File
 import '@/assets/scss/style.scss'
 

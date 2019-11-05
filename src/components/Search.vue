@@ -38,12 +38,13 @@ export default {
   name: 'Search',
   data() {
     return {
-      filetype: 'music',
+      filetype: 'everything',
       placeholder: '',
       url: '',
       urls: [],
       keyword: '',
       filetypes: {
+        everything: 'Everything',
         music: 'Music',
         flac: 'Lossless Music',
         video: 'Video',
@@ -74,7 +75,6 @@ export default {
     getFiletype: function(type) {
       switch (type) {
         case 'music':
-        default:
           this.api.formats = '(.ogg|.mp3|.flac|.wma|.m4a)'
           break;
         case 'flac':
@@ -98,19 +98,15 @@ export default {
         case 'cd':
           this.api.formats = '(exe|iso|tar|rar|zip|apk)'
           break;
+        default:
+          this.api.formats = ''
+          break;
       }
-    },
-    addUrl: function() {
-      const { baseUrl, query, formats, inTitle, inUrl } = this.api
-      const apiUrl = `${baseUrl}`+`${query}`+'%20%2B'+`${formats}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
-      this.url = apiUrl
-      window.open(apiUrl)
     },
     addPlaceholder: function(type) {
       switch (type) {
         case 'music':
         case 'flac':
-        default:
           this.placeholder = 'Beethoven'
           break;
         case 'video':
@@ -129,6 +125,9 @@ export default {
         case 'cd':
           this.placeholder = 'SuperTuxCart'
           break;
+        default:
+          this.placeholder = 'Debian Operating System'
+          break;
       }
     },
     getQuery: function() {
@@ -137,7 +136,20 @@ export default {
     getTypePlaceholder: function() {
       this.getFiletype(this.filetype)
       this.addPlaceholder(this.filetype)  
-    }
+    },
+    addUrl: function() {
+      const { baseUrl, query, formats, inTitle, inUrl } = this.api
+      let apiUrl
+      if (formats) {
+        apiUrl = `${baseUrl}`+`${query}`+'%20%2B'+`${formats}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
+      } else {
+        apiUrl = `${baseUrl}`+`${query}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
+      }
+
+      this.url = apiUrl
+      
+      window.open(apiUrl)
+    },
   },
   created() {
     this.getFiletype(this.filetype)
