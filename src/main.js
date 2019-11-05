@@ -8,7 +8,7 @@ import '@/config/bootstrap'
 import '@/config/meta'
 
 // Vue Router Configuration
-import '@/config/router'
+import router from '@/config/router'
 
 // Consilidated SCSS File
 import '@/assets/scss/style.scss'
@@ -16,5 +16,6 @@ import '@/assets/scss/style.scss'
 Vue.config.productionTip = false
 
 new Vue({
+  router,
   render: function (h) { return h(App) }
 }).$mount('#app')
