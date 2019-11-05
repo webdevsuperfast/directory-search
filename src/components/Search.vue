@@ -85,10 +85,10 @@ export default {
           this.api.formats = '(jpg|gif|png|tif|tiff|psd)'
           break;
         case 'archive':
-          this.api.formats = '(rar|tar|zip|sit|7z)'
+          this.api.formats = '(rar|tar|zip|sit|7z|iso|dmg|cab)'
           break;
         case 'cd':
-          this.api.formats = '(exe|iso|apk|dmg|app)'
+          this.api.formats = '(exe|apk|app|ipa|msi)'
           break;
         default:
           this.api.formats = ''
@@ -130,10 +130,11 @@ export default {
     addUrl: function() {
       const { baseUrl, query, formats, inTitle, inUrl } = this.api
       let apiUrl, finalQuery
-      if (formats) {
-        finalQuery = 'intext:"'+`${query}`+'"'+' intitle:"'+`${inTitle}`+'" +'+`${formats}`+' -inurl:'+`${inUrl[0]}`+' -inurl:'+`${inUrl[1]}`
+      
+      if (formats){
+        finalQuery = `intext:"${query}" intitle:"${inTitle}" +${formats} -inurl:${inUrl[0]} -inurl:${inUrl[1]}`
       } else {
-        finalQuery = 'intext:"'+`${query}`+'" intitle:"'+`${inTitle}`+'" -inurl:'+`${inUrl[0]}`+' -inurl:'+`${inUrl[1]}`
+        finalQuery = `intext:"${query}" intitle:"${inTitle}" -inurl:${inUrl[0]} -inurl:${inUrl[1]}`
       }
 
       apiUrl = `${baseUrl}`+encodeURIComponent(finalQuery)
