@@ -139,12 +139,14 @@ export default {
     },
     addUrl: function() {
       const { baseUrl, query, formats, inTitle, inUrl } = this.api
-      let apiUrl
+      let apiUrl, finalQuery
       if (formats) {
-        apiUrl = `${baseUrl}`+`${query}`+'%20%2B'+`${formats}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
+        finalQuery = 'intext:"'+`${query}`+'"'+' intitle:"'+`${inTitle}`+'" +'+`${formats}`+' -inurl:'+`${inUrl[0]}`+' -inurl:'+`${inUrl[1]}`
       } else {
-        apiUrl = `${baseUrl}`+`${query}`+'%20intitle:'+`${inTitle}`+'%20%2Dinurl:'+`${inUrl[0]}`+'%20%2Dinurl:'+`${inUrl[1]}`
+        finalQuery = 'intext:"'+`${query}`+'" intitle:"'+`${inTitle}`+'" -inurl:'+`${inUrl[0]}`+' -inurl:'+`${inUrl[1]}`
       }
+
+      apiUrl = `${baseUrl}`+encodeURIComponent(finalQuery)
 
       this.url = apiUrl
       
