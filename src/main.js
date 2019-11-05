@@ -7,6 +7,9 @@ import '@/config/bootstrap'
 // Vue Meta Configuration
 import '@/config/meta'
 
+// Vue Router Configuration
+import '@/config/router'
+
 // Consilidated SCSS File
 import '@/assets/scss/style.scss'
 
