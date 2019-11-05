@@ -46,10 +46,8 @@ export default {
       filetypes: {
         everything: 'Everything',
         music: 'Music',
-        flac: 'Lossless Music',
         video: 'Video',
         ebook: 'E-Book',
-        kindle: 'Kindle',
         image: 'Images',
         archive: 'Archive',
         cd: 'Games/Software' 
@@ -75,28 +73,22 @@ export default {
     getFiletype: function(type) {
       switch (type) {
         case 'music':
-          this.api.formats = '(.ogg|.mp3|.flac|.wma|.m4a)'
-          break;
-        case 'flac':
-          this.api.formats = '(.flac|.alac|.ape|.aac)'
+          this.api.formats = '(ogg|mp3|flac|wma|m4a|flac|alac|ape|aac)'
           break;
         case 'video':
-          this.api.formats = '(.mkv|.mp4|.avi|.mov|.mpg|.wmv)'
+          this.api.formats = '(mkv|mp4|avi|mov|mpg|wmv)'
           break;
         case 'ebook':
-          this.api.formats = '(.MOBI|.CBZ|.CBR|.CBC|.CHM|.EPUB|.FB2|.LIT|.LRF|.ODT|.PDF|.PRC|.PDB|.PML|.RB|.RTF|.TCR)'
-          break;
-        case 'kindle':
-          this.api.formats = '(.MOBI|.EPUB|.LIT)'
+          this.api.formats = '(mobi|cbz|cbr|cbc|chm|epub|fb2|lit|lrf|odt|pdf|prc|pdb|pml|rb|rtf|tcr)'
           break;
         case 'image':
-          this.api.formats = '(.jpg|.gif|.png|.tif|.tiff|.psd)'
+          this.api.formats = '(jpg|gif|png|tif|tiff|psd)'
           break;
         case 'archive':
-          this.api.formats = '(.rar|.tar|.zip|.sit)'
+          this.api.formats = '(rar|tar|zip|sit|7z)'
           break;
         case 'cd':
-          this.api.formats = '(exe|iso|tar|rar|zip|apk)'
+          this.api.formats = '(exe|iso|apk|dmg|app)'
           break;
         default:
           this.api.formats = ''
@@ -106,14 +98,12 @@ export default {
     addPlaceholder: function(type) {
       switch (type) {
         case 'music':
-        case 'flac':
           this.placeholder = 'Beethoven'
           break;
         case 'video':
           this.placeholder = 'Big Buck Bunny'
           break;
         case 'ebook':
-        case 'kindle':
           this.placeholder = 'Epic of Gilgamesh'
           break;
         case 'image':
