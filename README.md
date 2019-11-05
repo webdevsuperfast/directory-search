@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Directory Search is a VueJS application that uses Google to search Open Directory files. It is loosely on [Palined](http://www.palined.com/search/) and [FileChef](http://filechef.com/).
+Directory Search is a VueJS application that uses Google to search open directory files.
 
 ## Building from Source
 
@@ -34,5 +34,4 @@ I suggest using package managers to install Git, NodeJS and yarn. For Windows, y
 ## Credits
 
 * [Bootstrap Vue](https://bootstrap-vue.js.org/)
-* [Palined](http://www.palined.com/search/)
-* [FileChef](http://filechef.com/)
+* [r/opendirectories](https://www.reddit.com/r/opendirectories/comments/933pzm/all_resources_i_know_related_to_open_directories/)
