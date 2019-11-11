@@ -30,6 +30,7 @@
         <b-button block size="lg" variant="primary" @click="addUrl" :disabled="isDisabled">Search</b-button>
       </b-col>
     </b-form-row>
+    {{ this.searches }}
   </b-form>
 </template>
 
@@ -41,7 +42,7 @@ export default {
       filetype: 'everything',
       placeholder: '',
       url: '',
-      urls: [],
+      searches: [],
       keyword: '',
       filetypes: {
         everything: 'Everything',
@@ -140,13 +141,32 @@ export default {
       apiUrl = `${baseUrl}`+encodeURIComponent(finalQuery)
 
       this.url = apiUrl
-      
-      window.open(apiUrl)
+
+      this.searches.push({
+        keyword: this.keyword,
+        filetype: this.filetype,
+        url: this.url
+      })
+      this.keyword = ''
+
+      this.storeSearches()
+      // window.open(apiUrl)
     },
+    storeSearches: function() {
+      localStorage.setItem('searches', JSON.stringify(this.searches))
+    },
+    deleteSearch: function(index) {
+      this.searches.splice(index, 1)
+    }
   },
   created() {
     this.getFiletype(this.filetype)
     this.addPlaceholder(this.filetype)
+    
+    let storedSearches = JSON.parse(localStorage.getItem('searches'))
+    if (storedSearches != null) {
+      this.searches = storedSearches
+    }
   }
 }
 </script>
