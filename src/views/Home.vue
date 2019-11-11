@@ -4,6 +4,7 @@
     <Search />
     <Git />
     <ArrowDown />
+    <Results :searches="searches" />
   </main>
 </template>
 
@@ -12,6 +13,7 @@ import Logo from '@/components/Logo'
 import Search from '@/components/Search'
 import Git from '@/components/Git'
 import ArrowDown from '@/components/Arrow'
+import Results from '@/components/Results'
 
 export default {
   name: 'Home',
@@ -19,7 +21,8 @@ export default {
     Logo,
     Search,
     Git,
-    ArrowDown
+    ArrowDown,
+    Results
   }
 }
 </script>
