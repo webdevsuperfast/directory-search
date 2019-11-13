@@ -2,13 +2,14 @@
   <b-container>
     <b-row>
       <b-col>
-        <ul>
-          <li
-            v-for="(search, index) in searchList"
-            :item="search"
-            :key="index"
-          >{{ search.keyword }} {{ search.url }}</li>
-        </ul>
+        <b-table :items="searchList" :fields="fields" class="w-75 ml-auto mr-auto">
+          <template v-slot:cell(url)="data">
+            <b-button :href="data.item.url" target="_blank" variant="success">Visit</b-button>
+          </template>
+          <template v-slot:cell(delete)="data">
+            <b-button variant="danger" @click="removeSearchItem(data.index)">Delete</b-button>
+          </template>
+        </b-table>
       </b-col>
     </b-row>
   </b-container>
@@ -24,7 +25,25 @@ export default {
   },
   data: function() {
     return {
-      searchList: []
+      searchList: [],
+      fields: [
+        {
+          key: 'keyword',
+          label: "Keyword" 
+        },
+        {
+          key: 'filetype',
+          label: "Filetype"
+        },
+        {
+          key: "url",
+          label: "URL"
+        },
+        {
+          key: "delete",
+          label: "Delete"
+        }
+      ]
     };
   },
   watch: {
@@ -36,6 +55,10 @@ export default {
   methods: {
     storeSearches: function() {
       localStorage.setItem('searchItems', JSON.stringify(this.searchList)) 
+    },
+    removeSearchItem: function(index) {
+      this.searchList.splice(index, 1)
+      this.storeSearches()
     }
   },
   created: function() {
