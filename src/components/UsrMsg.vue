@@ -2,7 +2,7 @@
   <b-container class="pb-3 pt-3">
     <b-row>
       <b-col>
-        <b-form>
+        <b-form class="w-75 ml-auto mr-auto">
           <b-form-row>
             <b-col lg="7">
               <b-form-input
