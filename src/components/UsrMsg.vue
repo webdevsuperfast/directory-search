@@ -53,7 +53,7 @@ export default {
   methods: {
     submit: function() {
       this.$emit("inputData", this.keyword);
-      this.$emit("fileType", this.filetype);
+      this.$emit("filetype", this.filetype);
       this.$emit("url", this.url);
     },
     updatePlaceHolder: function(event) {
