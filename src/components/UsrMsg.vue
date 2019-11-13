@@ -38,7 +38,7 @@ export default {
       keyword: "",
       filetype: "everything",
       placeholder: "Debian Operating System",
-      url: '',
+      url: "",
       filetypes: {
         everything: "Everything",
         music: "Music",

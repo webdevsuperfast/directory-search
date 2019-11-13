@@ -28,12 +28,12 @@ export default {
       searchList: [],
       fields: [
         {
-          key: 'keyword',
-          label: "Keyword" 
+          key: "keyword",
+          label: "Keyword"
         },
         {
-          key: 'filetype',
-          label: "Filetype"
+          key: "filetype",
+          label: "Type"
         },
         {
           key: "url",
@@ -49,22 +49,22 @@ export default {
   watch: {
     msg: function() {
       this.searchList.push(this.msg);
-      this.storeSearches()
+      this.storeSearches();
     }
   },
   methods: {
     storeSearches: function() {
-      localStorage.setItem('searchItems', JSON.stringify(this.searchList)) 
+      localStorage.setItem("searchItems", JSON.stringify(this.searchList));
     },
     removeSearchItem: function(index) {
-      this.searchList.splice(index, 1)
-      this.storeSearches()
+      this.searchList.splice(index, 1);
+      this.storeSearches();
     }
   },
   created: function() {
-    let storedSearches = JSON.parse(localStorage.getItem('searchItems'))
+    let storedSearches = JSON.parse(localStorage.getItem("searchItems"));
     if (storedSearches != null) {
-      this.searchList = storedSearches
+      this.searchList = storedSearches;
     }
   }
 };

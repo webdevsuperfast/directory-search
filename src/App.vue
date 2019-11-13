@@ -19,7 +19,7 @@ export default {
     return {
       keyword: "",
       filetype: "",
-      url: '',
+      url: "",
       api: {
         baseUrl: "https://www.google.com/search?q=",
         formats: "",
@@ -35,7 +35,7 @@ export default {
   methods: {
     updateMessage: function(event) {
       this.keyword = event.replace(/ +/g, " ").trim();
-      this.api.query = this.keyword
+      this.api.query = this.keyword;
     },
     updateFileType: function(event) {
       switch (event) {
@@ -67,18 +67,22 @@ export default {
       this.filetype = event;
     },
     getUrl: function() {
-      const { baseUrl, query, formats, inTitle, inUrl } = this.api
-      let searchUrl, finalQuery
+      const { baseUrl, query, formats, inTitle, inUrl } = this.api;
+      let searchUrl, finalQuery;
 
       if (formats) {
-        finalQuery = `intext:"${query}" intitle:"${inTitle}" +${formats} -inurl:${inUrl[0]} -inurl:${inUrl[1]}`
+        finalQuery = `intext:"${query}" intitle:"${inTitle}" +${formats} -inurl:${
+          inUrl[0]
+        } -inurl:${inUrl[1]}`;
       } else {
-        finalQuery = `intext:"${query}" intitle:"${inTitle}" -inurl:${inUrl[0]} -inurl:${inUrl[1]}`
+        finalQuery = `intext:"${query}" intitle:"${inTitle}" -inurl:${
+          inUrl[0]
+        } -inurl:${inUrl[1]}`;
       }
 
-      searchUrl = `${baseUrl}`+encodeURIComponent(finalQuery)
+      searchUrl = `${baseUrl}` + encodeURIComponent(finalQuery);
 
-      this.url = searchUrl
+      this.url = searchUrl;
     }
   }
 };
