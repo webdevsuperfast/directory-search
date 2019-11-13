@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <UsrMsg @inputData="updateMessage" @url="getUrl" />
-    <Results :msg="{keyword, url}" />
+    <UsrMsg @inputData="updateMessage" @url="getUrl" @filetype="getFileType" />
+    <Results :msg="{keyword, filetype, url}" />
   </div>
 </template>
 
@@ -62,6 +62,9 @@ export default {
           this.api.formats = "";
           break;
       }
+    },
+    getFileType: function(event) {
+      this.filetype = event;
     },
     getUrl: function() {
       const { baseUrl, query, formats, inTitle, inUrl } = this.api
