@@ -1,10 +1,14 @@
 <template>
-  <div id="app" class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <router-view />
+  <div id="app">
+    
   </div>
 </template>
 
 <script>
+import Search from '@/components/Search'
+import Logo from '@/components/Logo'
+import Git from '@/components/Git'
+
 export default {
   name: 'app',
   metaInfo: {

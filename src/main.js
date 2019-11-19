@@ -7,9 +7,6 @@ import '@/config/bootstrap'
 // Vue Meta Configuration
 import '@/config/meta'
 
-// Vue Router Configuration
-import router from '@/config/router'
-
 // Font Awesome Configuration
 import '@/config/fontawesome'
 
