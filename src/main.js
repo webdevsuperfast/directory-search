@@ -16,6 +16,5 @@ import '@/assets/scss/style.scss'
 Vue.config.productionTip = false
 
 new Vue({
-  router,
   render: function (h) { return h(App) }
 }).$mount('#app')

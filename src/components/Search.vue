@@ -1,36 +1,38 @@
 <template>
-  <b-form>
-    <b-form-row>
-      <b-col lg="7">
-        <label class="sr-only" for="search-input">Search String</label>
-        <b-form-input 
-          autofocus
-          name="keyword" 
-          size="lg"
-          v-model="keyword" 
-          id="search-input" type="text" 
-          :placeholder="'Search anything e.g. ' + placeholder" 
-          v-on:keydown.enter.prevent
-          @change="getQuery"
-          ></b-form-input>
-      </b-col>
-      <b-col lg="3">
-        <label class="sr-only" for="search-select"></label>
-        <b-form-select
-          id="search-select"
-          size="lg"
-          :value="null"
-          :options="filetypes"
-          v-model="filetype"
-          @change="getTypePlaceholder"
-        >
-        </b-form-select>
-      </b-col>
-      <b-col lg="2">
-        <b-button block size="lg" variant="primary" @click="addUrl" :disabled="isDisabled">Search</b-button>
-      </b-col>
-    </b-form-row>
-  </b-form>
+  <section id="form" class="form-section m-auto">
+    <b-form>
+      <b-form-row>
+        <b-col lg="7">
+          <label class="sr-only" for="search-input">Search String</label>
+          <b-form-input 
+            autofocus
+            name="keyword" 
+            size="lg"
+            v-model="keyword" 
+            id="search-input" type="text" 
+            :placeholder="'Search anything e.g. ' + placeholder" 
+            v-on:keydown.enter.prevent
+            @change="getQuery"
+            ></b-form-input>
+        </b-col>
+        <b-col lg="3">
+          <label class="sr-only" for="search-select"></label>
+          <b-form-select
+            id="search-select"
+            size="lg"
+            :value="null"
+            :options="filetypes"
+            v-model="filetype"
+            @change="getTypePlaceholder"
+          >
+          </b-form-select>
+        </b-col>
+        <b-col lg="2">
+          <b-button block size="lg" variant="primary" @click="addUrl" :disabled="isDisabled">Search</b-button>
+        </b-col>
+      </b-form-row>
+    </b-form>
+  </section>
 </template>
 
 <script>
